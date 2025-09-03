@@ -1,26 +1,20 @@
 import { Router, type Request, type Response } from 'express';
-import db from '../database/db.js'; // Veritabanı bağlantımız
+import db from '../database/db.js';
 
-// Yeni bir router nesnesi oluşturuyoruz.
 const router = Router();
 
-// --- 1. YENİ KATEGORİ OLUŞTURMA (CREATE) ---
-// POST http://localhost:3000/categories
+// CREATE Category
 router.post('/', async (req: Request, res: Response) => {
   try {
-    // İstek gövdesinden (body) 'category_name' alanını alıyoruz.
     const { category_name } = req.body;
 
-    // Eğer 'category_name' gönderilmemişse, hata döndürüyoruz.
     if (!category_name) {
       return res.status(400).json({ message: 'Kategori adı (category_name) zorunludur.' });
     }
 
-    // Veritabanına yeni kategoriyi ekliyoruz.
     // .returning('*') sayesinde eklenen kaydın tüm bilgilerini geri alıyoruz.
     const newCategory = await db('categories').insert({ category_name }).returning('*');
 
-    // Başarılı olursa 201 (Created) status kodu ve oluşturulan kategoriyi döndürüyoruz.
     res.status(201).json(newCategory[0]);
   } catch (error) {
     console.error(error);
@@ -28,13 +22,24 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-
-// --- 2. TÜM KATEGORİLERİ LİSTELEME (READ ALL) ---
-// GET http://localhost:3000/categories
-router.get('/', async (req: Request, res: Response) => {
+// GET All Categories (with filtering)
+router.get('/', async (req, res) => {
   try {
-    // PDF'teki "soft delete" kuralı: deleted_at sütunu null olanları getir.
-    const categories = await db('categories').whereNull('deleted_at').select('*');
+    const { showDeleted, onlyDeleted } = req.query;
+    let query = db('categories');
+
+    if (onlyDeleted === 'true') {
+      // Sadece silinmiş olanları getir: deleted_at null OLMAYANLAR
+      query = query.whereNotNull('deleted_at');
+    } else if (showDeleted !== 'true') {
+      // Varsayılan durum (parametre yok veya showDeleted=false):
+      // Sadece silinmemiş olanları getir: deleted_at null OLANLAR
+      query = query.whereNull('deleted_at');
+    }
+    // showDeleted === 'true' ise hiçbir where koşulu eklemiyoruz,
+    // böylece tüm kayıtlar (silinmiş ve silinmemiş) geliyor.
+
+    const categories = await query.select('*');
     res.json(categories);
   } catch (error) {
     console.error(error);
@@ -42,19 +47,15 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-
-// --- 3. TEK BİR KATEGORİYİ GÖRÜNTÜLEME (READ ONE) ---
-// GET http://localhost:3000/categories/1
+// GET Category by ID
 router.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const { id } = req.params;
-    // Hem ID'si eşleşen hem de silinmemiş olanı buluyoruz.
     const category = await db('categories').where({ id }).whereNull('deleted_at').first();
 
     if (category) {
       res.json(category);
     } else {
-      // Kategori bulunamazsa 404 (Not Found) hatası döndürüyoruz.
       res.status(404).json({ message: 'Kategori bulunamadı.' });
     }
   } catch (error) {
@@ -63,9 +64,7 @@ router.get('/:id', async (req: Request<{ id: string }>, res: Response) => {
   }
 });
 
-
-// --- 4. KATEGORİ GÜNCELLEME (UPDATE) ---
-// PATCH http://localhost:3000/categories/1
+// UPDATE Category
 router.patch('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const { id } = req.params;
@@ -75,7 +74,6 @@ router.patch('/:id', async (req: Request<{ id: string }>, res: Response) => {
       return res.status(400).json({ message: 'Yeni kategori adı (category_name) zorunludur.' });
     }
 
-    // Silinmemiş bir kategoriyi ID'ye göre güncelliyoruz.
     const updatedCategory = await db('categories')
       .where({ id })
       .whereNull('deleted_at')
@@ -94,9 +92,7 @@ router.patch('/:id', async (req: Request<{ id: string }>, res: Response) => {
   }
 });
 
-
-// --- 5. KATEGORİ SİLME (SOFT DELETE) ---
-// DELETE http://localhost:3000/categories/1
+// DELETE Category (Soft)
 router.delete('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const { id } = req.params;
@@ -119,6 +115,4 @@ router.delete('/:id', async (req: Request<{ id: string }>, res: Response) => {
   }
 });
 
-
-// Router'ı dışarıya açıyoruz ki index.ts'de kullanabilelim.
 export default router;

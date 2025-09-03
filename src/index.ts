@@ -2,6 +2,7 @@ import express from 'express';
 import db from './database/db.js'; 
 import categoryRoutes from './routes/categories.js';
 import postRoutes from './routes/posts.js';
+import commentRoutes from './routes/comments.js';
 
 const app = express();
 const PORT = 3000;
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/categories', categoryRoutes);
 app.use('/posts', postRoutes);
+app.use('/comments', commentRoutes);
 
 app.listen(PORT, () => {
   console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor.`);

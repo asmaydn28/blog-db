@@ -1,24 +1,18 @@
 import express from 'express';
-import db from './database/db.js'; 
-import categoryRoutes from './routes/categories.js';
-import postRoutes from './routes/posts.js';
-import commentRoutes from './routes/comments.js';
+import categoryRoutes from './categories/categories.routes.js';
+import postRoutes from './posts/posts.routes.js';
+import commentRoutes from './comments/comments.routes.js';
+import tagRoutes from './tags/tags.routes.js';
 
 const app = express();
 const PORT = 3000;
 
-// ÇOK ÖNEMLİ: Gelen isteklerin body'sindeki JSON verilerini
-// Express'in anlayabilmesi için bu middleware'i ekliyoruz.
-// Bu olmadan POST ve PATCH isteklerindeki verileri okuyamayız.
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.json({ message: "API çalışıyor." });
-});
 
 app.use('/categories', categoryRoutes);
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
+app.use('/tags', tagRoutes);
 
 app.listen(PORT, () => {
   console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor.`);

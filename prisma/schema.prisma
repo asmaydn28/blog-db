@@ -1,15 +1,98 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Bu dosyanın en üstünde veri kaynağı ve client üreteci tanımlanır.
+// 'npx prisma init' komutu bunları bizim için otomatik oluşturdu.
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // .env dosyasındaki bağlantı bilgisini kullanır
+}
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+// --- MODELLERİMİZ BAŞLIYOR ---
+
+// Kategori Modeli
+model Category {
+  id          Int       @id @default(autoincrement()) // id, integer, birincil anahtar ve otomatik artan
+  name        String    @unique // name, string ve benzersiz (unique) olmalı
+  created_at  DateTime  @default(now()) @map("created_at") // oluşturulma tarihi, varsayılan olarak şu anki zaman
+  deleted_at  DateTime? @map("deleted_at") // silinme tarihi, boş olabilir (?)
+
+  // İLİŞKİ: Bir kategorinin birden fazla gönderisi olabilir.
+  // Bu sanal bir alandır, veritabanında bir sütun oluşturmaz.
+  // Sadece Prisma'ya ilişkiyi anlatır.
+  posts Post[]
+
+  // Bu modelin veritabanında 'categories' adlı tabloya denk geldiğini belirtiyoruz.
+  @@map("categories")
 }
+
+// Gönderi Modeli
+model Post {
+  id           Int        @id @default(autoincrement())
+  title        String
+  content      String
+  created_at   DateTime   @default(now()) @map("created_at")
+  published_at DateTime?  @map("published_at")
+  deleted_at   DateTime?  @map("deleted_at")
+
+  // İLİŞKİ: Bir gönderi TEK BİR kategoriye aittir.
+  category_id  Int        @map("category_id") // Bu, veritabanındaki gerçek foreign key sütunudur.
+  category     Category   @relation(fields: [category_id], references: [id]) // Bu, Prisma'nın ilişkiyi anlamasını sağlayan sanal alandır.
+
+  // İLİŞKİ: Bir gönderinin birden fazla yorumu olabilir.
+  comments Comment[]
+
+  // YENİ İLİŞKİ (MANY-TO-MANY): Bir gönderinin birden fazla etiketi olabilir.
+  // Bu ilişki, PostTag modeli (ilişki tablosu) üzerinden kurulur.
+  tags PostTag[]
+
+  @@map("posts")
+}
+
+// Yorum Modeli
+model Comment {
+  id             Int      @id @default(autoincrement())
+  content        String
+  commenter_name String   @map("commenter_name")
+  created_at     DateTime @default(now()) @map("created_at")
+
+  // İLİŞKİ: Bir yorum TEK BİR gönderiye aittir.
+  post_id Int    @map("post_id")
+  post    Post   @relation(fields: [post_id], references: [id])
+
+  @@map("comments")
+}
+
+// YENİ MODEL: Etiket Modeli
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  // İLİŞKİ (MANY-TO-MANY): Bir etiket birden fazla gönderide olabilir.
+  // Bu ilişki, PostTag modeli (ilişki tablosu) üzerinden kurulur.
+  posts PostTag[]
+
+  @@map("tags")
+}
+
+// YENİ MODEL: Gönderi ve Etiket Arasındaki İLİŞKİ TABLOSU (Pivot / Join Table)
+// Bu model, many-to-many ilişkiyi kurmamızı sağlar.
+model PostTag {
+  // İLİŞKİ: Bu kaydın hangi gönderiye ait olduğunu belirtir.
+  post_id Int  @map("post_id")
+  post    Post @relation(fields: [post_id], references: [id])
+
+  // İLİŞKİ: Bu kaydın hangi etikete ait olduğunu belirtir.
+  tag_id Int @map("tag_id")
+  tag    Tag @relation(fields: [tag_id], references: [id])
+
+  // BİLEŞİK BİRİNCİL ANAHTAR (Compound Primary Key):
+  // Bir post_id ve tag_id kombinasyonunun sadece bir kez var olabilmesini sağlar.
+  // Yani bir gönderiye aynı etiket iki kez eklenemez.
+  @@id([post_id, tag_id])
+  @@map("posts_tags")
+}
+
+    
+

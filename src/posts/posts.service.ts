@@ -58,10 +58,20 @@ export default class PostService {
     return true;
   };
 
-  // Gönderiye etiket ekleme
+  // Gönderiye etiket ekleme (pivot tablo: postTag)
   public addTag = async (postId: number, tagId: number) => {
-    // Prisma ile ilişki tablosuna (posts_tags) yeni bir kayıt ekliyoruz.
-    // Bu kadar basit!
+    const post = await prisma.post.findFirst({
+      where: { id: postId, deleted_at: null },
+    });
+    if (!post) {
+      throw new Error('Gönderi bulunamadı.');
+    }
+    const tag = await prisma.tag.findUnique({
+      where: { id: tagId },
+    });
+    if (!tag) {
+      throw new Error('Etiket bulunamadı.');
+    }
     return prisma.postTag.create({
       data: {
         post_id: postId,
@@ -70,14 +80,11 @@ export default class PostService {
     });
   };
 
-  // Gönderiden etiket çıkarma
+  // Gönderiden etiket çıkarma (pivot tablo: postTag)
   public removeTag = async (postId: number, tagId: number) => {
-    // Prisma ile ilişki tablosundan ilgili kaydı siliyoruz.
-    // 'where' içinde, şemada tanımladığımız bileşik anahtarı (@id([post_id, tag_id]))
-    // kullanarak tam olarak hangi kaydı sileceğimizi belirtiyoruz.
     return prisma.postTag.delete({
       where: {
-        post_id_tag_id: { // Prisma bu ismi bizim için otomatik oluşturur.
+        post_id_tag_id: {
           post_id: postId,
           tag_id: tagId,
         },

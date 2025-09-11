@@ -12,6 +12,9 @@ export default class TagController {
       const newTag = await this.tagService.create(tagData);
       res.status(201).json(newTag);
     } catch (error: any) {
+      if (error.code === 'P2002') {
+        return res.status(400).json({ message: 'Bu isimde bir etiket zaten mevcut.' });
+      }
       res.status(500).json({ message: error.message });
     }
   };

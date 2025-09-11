@@ -78,7 +78,8 @@ export default class PostController {
     }
   };
 
-  // YENİ FONKSİYON: Gönderiye etiket ekleme
+
+  // Gönderiye etiket ekleme
   public addTag = async (req: Request, res: Response) => {
     try {
       const id = req.params.id as string;
@@ -87,14 +88,23 @@ export default class PostController {
       }
       const postId = parseInt(id, 10);
       const { tag_id } = req.body;
+      if (!tag_id) {
+        return res.status(400).json({ message: 'Etiket ID (tag_id) zorunludur.' });
+      }
       await this.postService.addTag(postId, tag_id);
       res.status(201).json({ message: 'Etiket gönderiye başarıyla eklendi.' });
     } catch (error: any) {
+      if (error.code === 'P2002') {
+        return res.status(400).json({ message: 'Bu gönderiye bu etiket zaten eklenmiş.' });
+      }
+      if (error.message === 'Gönderi bulunamadı.' || error.message === 'Etiket bulunamadı.') {
+        return res.status(404).json({ message: error.message });
+      }
       res.status(500).json({ message: error.message });
     }
   };
 
-  // YENİ FONKSİYON: Gönderiden etiket çıkarma
+  // Gönderiden etiket çıkarma
   public removeTag = async (req: Request, res: Response) => {
     try {
       const id = req.params.id as string;

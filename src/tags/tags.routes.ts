@@ -1,4 +1,3 @@
-
 import { Router } from 'express';
 import TagController from './tags.controller.js';
 

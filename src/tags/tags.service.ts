@@ -1,4 +1,3 @@
-
 import prisma from '../prisma.js';
 
 export default class TagService {
@@ -36,7 +35,6 @@ export default class TagService {
 
   // Etiket silme
   public delete = async (id: number) => {
-    // İlişkili PostTag kayıtlarını da silmek gerekir.
     await prisma.postTag.deleteMany({
       where: { tag_id: id },
     });

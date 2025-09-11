@@ -1,4 +1,3 @@
-
 import type { Request, Response } from 'express';
 import TagService from './tags.service.js';
 

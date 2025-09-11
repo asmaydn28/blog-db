@@ -108,15 +108,23 @@ export default class PostController {
   public removeTag = async (req: Request, res: Response) => {
     try {
       const id = req.params.id as string;
-      const tagIdParam = req.params.tagId as string;
-      if (!id || !tagIdParam) {
-        return res.status(400).json({ message: 'Post ID ve Tag ID belirtilmelidir.' });
+      const { tag_id } = req.body;
+
+      if (!id) {
+        return res.status(400).json({ message: "Post ID URL'de belirtilmelidir." });
       }
+      if (!tag_id) {
+        return res.status(400).json({ message: 'Silinecek etiket ID (tag_id) body içinde belirtilmelidir.' });
+      }
+
       const postId = parseInt(id, 10);
-      const tagId = parseInt(tagIdParam, 10);
-      await this.postService.removeTag(postId, tagId);
-      res.status(204).send();
+      await this.postService.removeTag(postId, tag_id);
+      
+      res.status(200).json({ message: 'Etiket gönderiden başarıyla silindi.' });
     } catch (error: any) {
+      if (error.code === 'P2025') {
+        return res.status(404).json({ message: 'Belirtilen gönderi-etiket ilişkisi bulunamadı.' });
+      }
       res.status(500).json({ message: error.message });
     }
   };

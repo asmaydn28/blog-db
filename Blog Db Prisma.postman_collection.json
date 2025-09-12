@@ -1,0 +1,2108 @@
+{
+	"info": {
+		"_postman_id": "3717084b-cbac-4e0d-9611-7c5ac7b7139f",
+		"name": "Blog Db Prisma",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38615304"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"kickbox\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"kickbox\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53-G5GMgU+piaHMLMPHplicRV3yLqU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:15:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"name\": \"kickbox\",\n    \"created_at\": \"2025-09-12T13:15:19.085Z\",\n    \"deleted_at\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "List Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "422"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a6-cDQRmo3758WBg0IZlogrNtMvf2E\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:16:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"futbol\",\n        \"created_at\": \"2025-09-11T12:03:12.512Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Siyaset\",\n        \"created_at\": \"2025-09-11T12:03:23.201Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 4,\n        \"name\": \"tenis\",\n        \"created_at\": \"2025-09-11T17:53:10.869Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 5,\n        \"name\": \"masa tenisi\",\n        \"created_at\": \"2025-09-11T17:53:15.664Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 6,\n        \"name\": \"kickbox\",\n        \"created_at\": \"2025-09-12T13:15:19.085Z\",\n        \"deleted_at\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/categories/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-zKWRV+MOrGUZnLzS/pVSjSEvE4A\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:16:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"futbol\",\n    \"created_at\": \"2025-09-11T12:03:12.512Z\",\n    \"deleted_at\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Siyasets\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/categories/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Category",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Siyasets\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/categories/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-qoxjT6/fExYbhX61jQOBAGqst0Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:17:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"name\": \"Siyasets\",\n    \"created_at\": \"2025-09-11T12:03:23.201Z\",\n    \"deleted_at\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/categories/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-4BrR6r5O6HWfCI5GC9refRERuWs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:17:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Kategori başarıyla silindi.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Show Deleted",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"Ali Veli\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/categories?showDeleted=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "showDeleted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"Ali Veli\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/categories?showDeleted=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories"
+									],
+									"query": [
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "553"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"229-w2eu6J3hNK/bd83y71dvo9wkpeE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:17:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"futbol\",\n        \"created_at\": \"2025-09-11T12:03:12.512Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 2,\n        \"name\": \"basketbol\",\n        \"created_at\": \"2025-09-11T12:03:19.006Z\",\n        \"deleted_at\": \"2025-09-11T12:05:10.872Z\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"tenis\",\n        \"created_at\": \"2025-09-11T17:53:10.869Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 5,\n        \"name\": \"masa tenisi\",\n        \"created_at\": \"2025-09-11T17:53:15.664Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 6,\n        \"name\": \"kickbox\",\n        \"created_at\": \"2025-09-12T13:15:19.085Z\",\n        \"deleted_at\": null\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Siyasets\",\n        \"created_at\": \"2025-09-11T12:03:23.201Z\",\n        \"deleted_at\": \"2025-09-12T13:17:37.868Z\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create Posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"2000 boks\",\n    \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n    \"category_id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Posts",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"2000 boks\",\n    \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n    \"category_id\": 4\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/posts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-9oM+AYRHV3Sjd/jv3NaM1J+A2bM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:18:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 9,\n    \"title\": \"2000 boks\",\n    \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n    \"created_at\": \"2025-09-12T13:18:15.955Z\",\n    \"published_at\": null,\n    \"deleted_at\": null,\n    \"category_id\": 4\n}"
+						}
+					]
+				},
+				{
+					"name": "List Post",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"2024 Ekonomi Durumu\",\n    \"content\": \"Bu yılın ekonomik verileri incelendiğinde...\",\n    \"category_id\": 99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Post",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"2024 Ekonomi Durumu\",\n    \"content\": \"Bu yılın ekonomik verileri incelendiğinde...\",\n    \"category_id\": 99\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/posts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1440"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a0-kZoWci/op67bt7MDTZ2pgCgTlk0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:18:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"title\": \"2000 basketbol\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T12:53:06.914Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 1,\n        \"title\": \"2000 futbol\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T12:52:55.156Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 4,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:53.084Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 1\n    },\n    {\n        \"id\": 5,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:55.680Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 6,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:58.454Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 3\n    },\n    {\n        \"id\": 7,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T18:06:51.988Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 8,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T18:28:50.122Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 9,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-12T13:18:15.955Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "List Posts By Tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts?tags=2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Posts By Tags",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/posts?tags=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "tags",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1440"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a0-kZoWci/op67bt7MDTZ2pgCgTlk0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:18:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"title\": \"2000 basketbol\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T12:53:06.914Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 1,\n        \"title\": \"2000 futbol\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T12:52:55.156Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 4,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:53.084Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 1\n    },\n    {\n        \"id\": 5,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:55.680Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 6,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:58.454Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 3\n    },\n    {\n        \"id\": 7,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T18:06:51.988Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 8,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T18:28:50.122Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 9,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-12T13:18:15.955Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show Posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"2024 Ekonomi Durumu\",\n    \"content\": \"Bu yılın ekonomik verileri incelendiğinde...\",\n    \"category_id\": 99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Posts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"2024 Ekonomi Durumu\",\n    \"content\": \"Bu yılın ekonomik verileri incelendiğinde...\",\n    \"category_id\": 99\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/posts/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "183"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b7-8XV3CpD0ECv0A6z/TbwoRgXCOK8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:18:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"title\": \"2000 basketbol\",\n    \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n    \"created_at\": \"2025-09-11T12:53:06.914Z\",\n    \"published_at\": null,\n    \"deleted_at\": null,\n    \"category_id\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Posts",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Posts",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"category_id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/posts/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "180"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b4-d8Z5Nc2l1RiAz4Z4gM59x8uAnzA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:18:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"2000 futbol\",\n    \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n    \"created_at\": \"2025-09-11T12:52:55.156Z\",\n    \"published_at\": null,\n    \"deleted_at\": null,\n    \"category_id\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Posts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_id\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Posts",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"category_id\": 2\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/posts/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts",
+										"3"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-HBPzus0c6hz1y2vvIRRzPAnD4do\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:19:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Böyle bir post bulunamadı.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Show Deleted",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts?showDeleted=false&status=draft",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "showDeleted",
+									"value": "false"
+								},
+								{
+									"key": "status",
+									"value": "draft"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Deleted",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/posts?showDeleted=false&status=draft",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "showDeleted",
+											"value": "false"
+										},
+										{
+											"key": "status",
+											"value": "draft"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1440"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5a0-AcSC/n1eNoIL6gHW3agBpbxln48\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:19:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"title\": \"2000 basketbol\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T12:53:06.914Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 4,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:53.084Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 1\n    },\n    {\n        \"id\": 5,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:55.680Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    },\n    {\n        \"id\": 6,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T17:52:58.454Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 3\n    },\n    {\n        \"id\": 7,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T18:06:51.988Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 8,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T18:28:50.122Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 9,\n        \"title\": \"2000 boks\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-12T13:18:15.955Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 4\n    },\n    {\n        \"id\": 1,\n        \"title\": \"2000 futbol\",\n        \"content\": \"Bu yılın boks verileri incelendiğinde...\",\n        \"created_at\": \"2025-09-11T12:52:55.156Z\",\n        \"published_at\": null,\n        \"deleted_at\": null,\n        \"category_id\": 2\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create Comments",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\": 4,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"ahmet ahmmetoglu\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Comments",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\": 4,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"ahmet ahmmetoglu\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/comments",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"comments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"84-x2c0QhEjcgKACall3Tg2L20xb5I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:19:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"ahmet ahmmetoglu\",\n    \"created_at\": \"2025-09-12T13:19:37.938Z\",\n    \"post_id\": 4\n}"
+						}
+					]
+				},
+				{
+					"name": "List Comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"Ali Veli\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Comments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"Ali Veli\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/comments",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"comments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "538"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21a-dM9PVe2+tUvR+x+RxyCaAz4Evl4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:19:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 2,\n        \"content\": \"Güncellenmiş yorum içeriği.\",\n        \"commenter_name\": \"Ayşe Yılmaz\",\n        \"created_at\": \"2025-09-11T12:56:11.657Z\",\n        \"post_id\": 2\n    },\n    {\n        \"id\": 3,\n        \"content\": \"Bu harika bir gönderi!\",\n        \"commenter_name\": \"ahmet ahmmetoglu\",\n        \"created_at\": \"2025-09-11T18:29:05.721Z\",\n        \"post_id\": 3\n    },\n    {\n        \"id\": 4,\n        \"content\": \"Bu harika bir gönderi!\",\n        \"commenter_name\": \"ahmet ahmmetoglu\",\n        \"created_at\": \"2025-09-11T18:29:09.814Z\",\n        \"post_id\": 4\n    },\n    {\n        \"id\": 5,\n        \"content\": \"Bu harika bir gönderi!\",\n        \"commenter_name\": \"ahmet ahmmetoglu\",\n        \"created_at\": \"2025-09-12T13:19:37.938Z\",\n        \"post_id\": 4\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show Comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"post_id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"Ali Veli\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/comments/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Comments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"post_id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"Ali Veli\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/comments/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"comments",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"84-oL09GAjpI/IZqjITm0DMWiPASoE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:19:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"content\": \"Bu harika bir gönderi!\",\n    \"commenter_name\": \"ahmet ahmmetoglu\",\n    \"created_at\": \"2025-09-11T18:29:05.721Z\",\n    \"post_id\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Comments",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Güncellenmiş yorum içeriği.\",\n    \"commenter_name\": \"Ayşe Yılmazz\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/comments/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Comments",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"content\": \"Güncellenmiş yorum içeriği.\",\n    \"commenter_name\": \"Ayşe Yılmazz\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/comments/2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"comments",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "138"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8a-BTAs75PEdcTGSxHzk9EAQKDwgkg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:20:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"content\": \"Güncellenmiş yorum içeriği.\",\n    \"commenter_name\": \"Ayşe Yılmazz\",\n    \"created_at\": \"2025-09-11T12:56:11.657Z\",\n    \"post_id\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Comments",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/comments/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Comments",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/comments/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"comments",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-4ewrVybM2DCv979frY4xDoGSsKo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:20:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Böyle bir yorum bulunamadı.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Create Tag",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"dövüş\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tags",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Tag",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"dövüş\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tags"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-S+wbn6pqxO9lRnCjmi4bGoNIicU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:20:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 11,\n    \"name\": \"dövüş\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tags",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Tags",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tags"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"82-f1VNmcyWPGMn021mC6O9MX1Ccuw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:20:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"boks\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"basketbol\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"futbol\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"yüzme\"\n    },\n    {\n        \"id\": 11,\n        \"name\": \"dövüş\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Show Tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tags/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Tag",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tags/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tags",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "22"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16-5lHBrTr+4fHlRQU3PV7XBbtpg4w\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:21:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"boks\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Tag",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"fener\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tags/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Tag",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"fener\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/tags/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tags",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "23"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17-fTcMti0zodmpprp87WzeunHyuqQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:21:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"fener\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Tag",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tags/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Tag",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tags/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tags",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-p8bUlxP00GeuodJEkaR0Bt1kspU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:21:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Etiket başarıyla silindi.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Post Tags",
+			"item": [
+				{
+					"name": "Attach Tags to Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tag_id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/4/tags",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"4",
+								"tags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Attach Tags to Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"tag_id\": 3\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/posts/4/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts",
+										"4",
+										"tags"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-0egiKoWOlCQFgEjHEWuCCPth+yY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:21:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Etiket gönderiye başarıyla eklendi.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Detach Tags from Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tag_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/2/tags",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"2",
+								"tags"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Detach Tags from Post",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"tag_id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/posts/2/tags",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"posts",
+										"2",
+										"tags"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-+HwVZuYDOJXu5pFA70p3QCKKwz4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Sep 2025 13:21:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Belirtilen gönderi-etiket ilişkisi bulunamadı.\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

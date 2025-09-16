@@ -2,24 +2,17 @@ import prisma from '../prisma.js';
 
 export default class PostService {
   // Post oluşturma
-  public create = async (postData: {
-    category_id: number;
-    title: string;
-    content: string;
-    published_at?: Date | null;
-  }) => {
-    if (!postData.category_id || !postData.title || !postData.content) {
-      throw new Error('category_id, title ve content zorunludur.');
-    }
+  public create = async (postData: { title: string, content: string, category_id: number }, userId: number) => {
+    
     return prisma.post.create({
-      data: {
-        category_id: postData.category_id,
-        title: postData.title,
-        content: postData.content,
-        published_at: postData.published_at ?? null,
-      },
+        data: {
+            title: postData.title,
+            content: postData.content,
+            category_id: postData.category_id,
+            user_id: userId 
+        }
     });
-  };
+};
 
   // Postları listeleme
   public findAll = async (filters: { showDeleted?: string; onlyDeleted?: string }) => {

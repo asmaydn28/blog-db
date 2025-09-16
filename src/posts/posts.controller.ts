@@ -4,15 +4,16 @@ import PostService from './posts.service.js';
 export default class PostController {
   private postService = new PostService();
 
-  public create = async (req: Request, res: Response) => {
+  public create = async (req: any, res: Response) => { 
     try {
-      const postData = req.body;
-      const newPost = await this.postService.create(postData);
-      res.status(201).json(newPost);
+        const postData = req.body;
+        const userId = req.user.id; 
+        const newPost = await this.postService.create(postData, userId); 
+        res.status(201).json(newPost);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
-  };
+};
 
   // Tüm postları listeleme
   public findAll = async (req: Request, res: Response) => {

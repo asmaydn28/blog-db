@@ -1,37 +1,35 @@
-import type { Request, Response } from 'express';
+import { type Request, type Response } from 'express';
 import CategoryService from './categories.service.js';
 
 export default class CategoryController {
   private categoryService = new CategoryService();
 
-  // YENİ KATEGORİ OLUŞTURMA
-  public create = async (req: Request, res: Response) => {
+  public create = async (req: any, res: Response) => {
     try {
       const categoryData = req.body;
-      const newCategory = await this.categoryService.create(categoryData);
+      const user = req.user; 
+      const newCategory = await this.categoryService.create(categoryData, user); 
       res.status(201).json(newCategory);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      res.status(403).json({ message: error.message });
     }
   };
 
-  // TÜM KATEGORİLERİ LİSTELEME
   public findAll = async (req: Request, res: Response) => {
     try {
       const filters = req.query;
       const categories = await this.categoryService.findAll(filters);
       res.status(200).json(categories);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Kategoriler listelenirken bir hata oluştu.' });
     }
   };
 
-  // TEK KATEGORİ GETİRME
   public findOne = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ message: 'Kategori ID\'si belirtilmelidir.' });
+        return res.status(400).json({ message: 'ID parametresi eksik.' });
       }
       const categoryId = parseInt(id);
       const category = await this.categoryService.findOne(categoryId);
@@ -40,42 +38,42 @@ export default class CategoryController {
       }
       res.status(200).json(category);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Kategori getirilirken bir hata oluştu.' });
     }
   };
 
-  // KATEGORİ GÜNCELLEME
-  public update = async (req: Request, res: Response) => {
+  public update = async (req: any, res: Response) => {
     try {
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ message: 'Kategori ID\'si belirtilmelidir.' });
+        return res.status(400).json({ message: 'ID parametresi eksik.' });
       }
-      const categoryId = parseInt(id);
-      const categoryData = req.body;
-      const updatedCategory = await this.categoryService.update(categoryId, categoryData);
+      const categoryId = parseInt(id);      
+      const categoryData = req.body;           
+      const user = req.user;                     
+
+      const updatedCategory = await this.categoryService.update(categoryId, categoryData, user);
+
       res.status(200).json(updatedCategory);
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      res.status(403).json({ message: error.message });
     }
   };
 
-  // KATEGORİ SİLME
-  public delete = async (req: Request, res: Response) => {
+  public delete = async (req: any, res: Response) => {
     try {
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ message: 'Kategori ID\'si belirtilmelidir.' });
+        return res.status(400).json({ message: 'ID parametresi eksik.' });
       }
-      const categoryId = parseInt(id);
-      const deleted = await this.categoryService.delete(categoryId);
-      if (deleted) {
-        return res.status(200).json({ message: "Kategori başarıyla silindi." });
-      } else {
-        return res.status(404).json({ message: "Böyle bir kategori bulunamadı." });
-      }
+      const categoryId = parseInt(id);  
+      const user = req.user;                 
+
+      await this.categoryService.delete(categoryId, user);
+
+      res.status(204).send();
     } catch (error: any) {
-      res.status(500).json({ message: error.message });
+      res.status(403).json({ message: error.message });
     }
   };
 }

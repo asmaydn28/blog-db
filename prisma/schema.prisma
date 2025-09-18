@@ -7,7 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// YENİ: Kullanıcı rolleri için bir enum tanımlıyoruz.
 enum Role {
   member
   moderator
@@ -36,8 +35,6 @@ model Post {
   comments     Comment[]
   tags         PostTag[]
 
-  // --- DEĞİŞİKLİK: VERİ SAHİPLİĞİ EKLENDİ ---
-  // Bu gönderinin hangi kullanıcı tarafından oluşturulduğunu belirtir.
   user_id Int?  @map("user_id")
   user    User? @relation(fields: [user_id], references: [id])
 
@@ -45,17 +42,15 @@ model Post {
 }
 
 model Comment {
-  id             Int      @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   content        String
-  commenter_name String   @map("commenter_name")
-  created_at     DateTime @default(now()) @map("created_at")
-  post_id        Int      @map("post_id")
-  post           Post     @relation(fields: [post_id], references: [id])
-
-  // --- DEĞİŞİKLİK: VERİ SAHİPLİĞİ EKLENDİ ---
-  // Bu yorumun hangi kullanıcı tarafından oluşturulduğunu belirtir.
-  user_id Int?  @map("user_id")
-  user    User? @relation(fields: [user_id], references: [id])
+  commenter_name String    @map("commenter_name")
+  created_at     DateTime  @default(now()) @map("created_at")
+  deleted_at     DateTime? @map("deleted_at") 
+  post_id        Int       @map("post_id")
+  post           Post      @relation(fields: [post_id], references: [id])
+  user_id        Int?      @map("user_id")
+  user           User?     @relation(fields: [user_id], references: [id])
 
   @@map("comments")
 }
@@ -77,8 +72,6 @@ model PostTag {
   @@id([post_id, tag_id])
   @@map("posts_tags")
 }
-
-// --- YENİ MODELLER ---
 
 model User {
   id              Int            @id @default(autoincrement())

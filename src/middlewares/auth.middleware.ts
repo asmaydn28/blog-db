@@ -5,6 +5,7 @@ interface AuthenticatedRequest extends Request {
   user?: {
     id: number;
     role: string;
+    name: string;
   };
 }
 
@@ -16,9 +17,9 @@ export const authMiddleware = (req: AuthenticatedRequest, res: Response, next: N
       return res.status(401).json({ message: 'Yetkisiz Erişim: Token bulunamadı.' });
     }
 
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as { userId: number; role: string };
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET!) as { userId: number; role: string; name: string };
 
-    req.user = { id: decoded.userId, role: decoded.role };
+    req.user = { id: decoded.userId, role: decoded.role, name: decoded.name };
 
     next();
   } catch (error) {

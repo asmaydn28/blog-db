@@ -1,15 +1,15 @@
 import { Router } from 'express';
-
+import { authMiddleware } from '../middlewares/auth.middleware.js';
 import CategoryController from './categories.controller.js';
 
 const router = Router();
 
 const categoryController = new CategoryController();
 
-router.post('/', categoryController.create);
+router.post('/', authMiddleware, categoryController.create);
 router.get('/', categoryController.findAll);
 router.get('/:id', categoryController.findOne);
-router.patch('/:id', categoryController.update);
-router.delete('/:id', categoryController.delete);
+router.patch('/:id', authMiddleware, categoryController.update);
+router.delete('/:id', authMiddleware, categoryController.delete);
 
 export default router;

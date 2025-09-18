@@ -65,7 +65,7 @@ export default class AuthService {
       },
     });
 
-    const accessToken = jwt.sign({ userId: user.id, role: user.role }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+        const accessToken = jwt.sign({ userId: user.id, role: user.role, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
     const refreshToken = jwt.sign({ userId: user.id }, REFRESH_TOKEN_SECRET, { 
       expiresIn: '7d',
       jwtid: refreshTokenRecord.id.toString(),
@@ -101,7 +101,7 @@ export default class AuthService {
       }
 
       const { user } = refreshTokenRecord;
-      const accessToken = jwt.sign({ userId: user.id, role: user.role }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+          const accessToken = jwt.sign({ userId: user.id, role: user.role, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
 
       return { accessToken, refreshToken: refreshTokenString };
     } catch (error) {

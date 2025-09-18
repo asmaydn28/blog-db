@@ -1,8 +1,17 @@
 import prisma from '../prisma.js';
 
+type UserPayload = {
+  id: number;
+  role: string;
+};
+
 export default class CategoryService {
-  // Kategori oluşturma
-  public create = async (categoryData: { name: string }) => {
+  public create = async (categoryData: { name: string }, user: UserPayload) => {
+    // Yetkilendirme: Sadece 'admin' rolündeki kullanıcılar kategori oluşturabilir.
+    if (user.role !== 'admin') {
+      throw new Error('Bu işlemi yapmak için yetkiniz yok (Admin rolü gereklidir).');
+    }
+
     if (!categoryData.name) {
       throw new Error('Kategori adı (name) zorunludur.');
     }
@@ -13,7 +22,38 @@ export default class CategoryService {
     });
   };
 
-  // Kategorileri listeleme
+  public update = async (id: number, categoryData: { name?: string }, user: UserPayload) => {
+    // Yetkilendirme: Sadece 'admin' rolündeki kullanıcılar kategori güncelleyebilir.
+    if (user.role !== 'admin') {
+      throw new Error('Bu işlemi yapmak için yetkiniz yok (Admin rolü gereklidir).');
+    }
+
+    const dataToUpdate: { name?: string } = {};
+
+    if (categoryData.name !== undefined) {
+      dataToUpdate.name = categoryData.name;
+    }
+
+    return prisma.category.update({
+      where: { id: id },
+      data: dataToUpdate,
+    });
+  };
+
+  public delete = async (id: number, user: UserPayload) => {
+    // Yetkilendirme: Sadece 'admin' rolündeki kullanıcılar kategori silebilir.
+    if (user.role !== 'admin') {
+      throw new Error('Bu işlemi yapmak için yetkiniz yok (Admin rolü gereklidir).');
+    }
+
+    return prisma.category.update({
+      where: { id: id },
+      data: {
+        deleted_at: new Date(),
+      },
+    });
+  };
+
   public findAll = async (filters: { showDeleted?: string; onlyDeleted?: string }) => {
     const whereClause: any = {};
     if (filters.onlyDeleted === 'true') {
@@ -24,33 +64,9 @@ export default class CategoryService {
     return prisma.category.findMany({ where: whereClause });
   };
 
-  // Kategori detayını getirme
   public findOne = async (id: number) => {
     return prisma.category.findFirst({
       where: { id: id, deleted_at: null },
     });
-  };
-
-  // Kategori güncelleme
-  public update = async (id: number, categoryData: { name?: string }) => {
-    const data: { name?: string } = {};
-    if (categoryData.name !== undefined) {
-      data.name = categoryData.name;
-    }
-    return prisma.category.update({
-      where: { id: id },
-      data: data,
-    });
-  };
-
-  // Kategori silme
-  public delete = async (id: number) => {
-    const category = await prisma.category.findUnique({ where: { id } });
-    if (!category || category.deleted_at) return false;
-    await prisma.category.update({
-      where: { id },
-      data: { deleted_at: new Date() },
-    });
-    return true;
   };
 }

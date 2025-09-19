@@ -5,18 +5,16 @@ export default class TagController {
   private tagService = new TagService();
 
   // Etiket oluşturma
-  public create = async (req: Request, res: Response) => {
-    try {
-      const tagData = req.body;
-      const newTag = await this.tagService.create(tagData);
-      res.status(201).json(newTag);
-    } catch (error: any) {
-      if (error.code === 'P2002') {
-        return res.status(400).json({ message: 'Bu isimde bir etiket zaten mevcut.' });
-      }
-      res.status(500).json({ message: error.message });
-    }
-  };
+  public create = async (req: any, res: Response) => {
+  try {
+    const tagData = req.body;
+    const user = req.user;
+    const newTag = await this.tagService.create(tagData, user);
+    res.status(201).json(newTag);
+  } catch (error: any) {
+    res.status(403).json({ message: error.message });
+  }
+};
 
   // Etiketleri listeleme
   public findAll = async (req: Request, res: Response) => {
@@ -47,33 +45,26 @@ export default class TagController {
   };
 
   // Etiket güncelleme
-  public update = async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      if (!id) {
-        return res.status(400).json({ message: 'Etiket ID belirtilmelidir.' });
-      }
-      const tagId = parseInt(id);
-      const tagData = req.body;
-      const updatedTag = await this.tagService.update(tagId, tagData);
-      res.status(200).json(updatedTag);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  };
-
+  public update = async (req: any, res: Response) => {
+  try {
+    const id = parseInt(req.params.id);
+    const tagData = req.body;
+    const user = req.user;
+    const updatedTag = await this.tagService.update(id, tagData, user);
+    res.status(200).json(updatedTag);
+  } catch (error: any) {
+    res.status(403).json({ message: error.message });
+  }
+};
   // Etiket silme
-  public delete = async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      if (!id) {
-        return res.status(400).json({ message: 'Etiket ID belirtilmelidir.' });
-      }
-      const tagId = parseInt(id);
-      await this.tagService.delete(tagId);
-      res.status(200).json({ message: 'Etiket başarıyla silindi.' });
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  };
+  public delete = async (req: any, res: Response) => {
+  try {
+    const id = parseInt(req.params.id);
+    const user = req.user;
+    await this.tagService.delete(id, user);
+    res.status(204).send();
+  } catch (error: any) {
+    res.status(403).json({ message: error.message });
+  }
+};
 }

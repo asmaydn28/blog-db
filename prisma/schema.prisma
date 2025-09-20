@@ -99,3 +99,10 @@ model RefreshToken {
 
   @@map("refresh_tokens")
 }
+
+model RevokedToken {
+  jti        String   @id @unique
+  expires_at DateTime @map("expires_at")
+
+  @@map("revoked_tokens")
+}

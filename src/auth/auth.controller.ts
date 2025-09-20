@@ -50,4 +50,17 @@ export default class AuthController {
       res.status(500).json({ message: error.message });
     }
   };
+
+  public logout = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { refreshToken } = req.body;
+      if (refreshToken) {
+        await this.authService.logout(refreshToken);
+      }
+      res.status(200).json({ message: "Başarıyla çıkış yapıldı." });
+    } catch (error: any) {
+      console.error("Logout controller hatası:", error);
+      res.status(200).json({ message: "Çıkış işlemi tamamlandı." });
+    }
+  };
 }

@@ -69,6 +69,9 @@ export default class UserController {
   }
 };
 
+
+  
+
   public delete = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;

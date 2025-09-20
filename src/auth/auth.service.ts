@@ -65,7 +65,10 @@ export default class AuthService {
       },
     });
 
-        const accessToken = jwt.sign({ userId: user.id, role: user.role, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+    const accessToken = jwt.sign({ userId: user.id, role: user.role, name: user.name }, ACCESS_TOKEN_SECRET, { 
+      expiresIn: '15m',
+      jwtid: refreshTokenRecord.id.toString(),
+    });
     const refreshToken = jwt.sign({ userId: user.id }, REFRESH_TOKEN_SECRET, { 
       expiresIn: '7d',
       jwtid: refreshTokenRecord.id.toString(),
@@ -101,11 +104,58 @@ export default class AuthService {
       }
 
       const { user } = refreshTokenRecord;
-          const accessToken = jwt.sign({ userId: user.id, role: user.role, name: user.name }, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+      const newRefreshTokenRecord = await prisma.refreshToken.create({
+        data: {
+          user_id: user.id,
+          expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
+        },
+      });
+
+      await prisma.refreshToken.update({
+        where: { id: refreshTokenId },
+        data: { revoked_at: new Date() },
+      });
+
+      const accessToken = jwt.sign({ userId: user.id, role: user.role, name: user.name }, ACCESS_TOKEN_SECRET, {
+        expiresIn: '15m',
+        jwtid: newRefreshTokenRecord.id.toString(),
+      });
+
+      const newRefreshToken = jwt.sign({ userId: user.id }, REFRESH_TOKEN_SECRET, {
+        expiresIn: '7d',
+        jwtid: newRefreshTokenRecord.id.toString(),
+      });
+
+      return { accessToken, refreshToken: newRefreshToken };
 
       return { accessToken, refreshToken: refreshTokenString };
     } catch (error) {
       return null;
+    }
+  };
+
+  public logout = async (refreshTokenString: string): Promise<void> => {
+    try {
+      const decoded = jwt.verify(refreshTokenString, REFRESH_TOKEN_SECRET) as { jti: string };
+
+      if (!decoded.jti) {
+        return;
+      }
+
+      const refreshTokenId = parseInt(decoded.jti, 10);
+      if (isNaN(refreshTokenId)) {
+        return;
+      }
+
+      await prisma.refreshToken.updateMany({
+        where: {
+          id: refreshTokenId,
+          revoked_at: null,
+        },
+        data: { revoked_at: new Date() },
+      });
+    } catch (error) {
+      console.error("Logout sırasında token doğrulanamadı:", (error as Error).message);
     }
   };
 }
